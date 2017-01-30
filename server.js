@@ -42,6 +42,17 @@ app.post('/api/bears', function(req, res){
   });
 })
 
+app.get('/api/bears/:bear_id', function(req, res){
+  Bear.findById(req.params.bear_id, function(err, bearData){
+    if(err){
+      console.log("Error finding one specific bear");
+    }
+    else{
+      res.json(bearData);
+    }
+  })
+})
+
 
 app.listen(3000, function(){
   console.log('Express server up and running on port 3000');
