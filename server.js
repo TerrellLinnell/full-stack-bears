@@ -18,7 +18,7 @@ app.get('/api/numbers', function(req, res){
 });
 
 app.get('/api/bears', function(req, res){
-  res.send({ message:"You found the bears route!!"});
+  res.send({ message:"You found the bears route!! 😁😁😁😁😁😁"});
 });
 
 
