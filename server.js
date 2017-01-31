@@ -32,7 +32,7 @@ app.post('/api/bears', function(req, res){
 
   });
 
-  bear.save(function(err, bearData) {
+   bear.save(function(err, bearData) {
     if (err) {
       consoel.log(err, "Error with your bearer");
     }
@@ -78,6 +78,16 @@ app.put('/api/bears/:bear_id', function(req, res){
   })
 });
 
+app.delete('/api/bears/:bear_id', function(req, res) {
+  Bear.remove({ _id: req.params.bear_id}, function(err, b){
+    if (err) {
+      console.log(err, "COULD NOT DELETE BEAR!!!");
+    }
+    else{
+      res.json({ message: "BEAR DELETED 😫"})
+    }
+  })
+});
 
 app.listen(3000, function(){
   console.log('Express server up and running on port 3000');
