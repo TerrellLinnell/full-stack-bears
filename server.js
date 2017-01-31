@@ -9,6 +9,7 @@ mongoose.connect("mongodb://localhost/fullstack-bears");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.set('view engine', 'ejs');
 
 app.get('/api/bears', function(req, res){
   Bear.find(function(err, data) {
