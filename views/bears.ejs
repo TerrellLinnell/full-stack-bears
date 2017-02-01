@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+              <form id="newBear" class="form-control">
+                <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder="name"/>
+                <input type="text" class="form-control" id="species" placeholder="species"/>
+                <input type="number" class="form-control" id="age" placeholder="age"/>
+                <input type="number" class="form-control" id="weight" placeholder="weight"/>
+                <input type="text" class="form-control" id="location" placeholder="location?"/>
+                <input type="text" class="form-control" id="attitude" placeholder="attitude"/>
+                <button  type="submit" class="btn btn-success">Submit Bear</button>
+              </form>
+              </div>
+      </div>
+    </div>
     <div class='container'>
       <table class='table table-bordered'>
         <thead>
@@ -31,7 +46,8 @@
             <td><%= bears[i].location %></td>
             <td><%= bears[i].age %></td>
             <td><%= bears[i].attitude %></td>
-            <td><button id="<%= bears[i]._id %>" type="button" class="btn btn-danger deleteBear">DELETE</button></td>
+            <td><button id="del-<%= bears[i]._id %>" type="button" class="btn btn-danger deleteBear">DELETE</button></td>
+            <td><button id="update-<%= bears[i]._id %>" type="button" class="btn btn-warning-outline updateBear">update</button></td>
           </tr>
           <% } %>
         </tbody>

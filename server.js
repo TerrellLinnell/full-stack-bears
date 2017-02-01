@@ -55,7 +55,7 @@ app.post('/api/bears', function(req, res){
 
    bear.save(function(err, bearData) {
     if (err) {
-      consoel.log(err, "Error with your bearer");
+      console.log(err, "Error with your bearer");
     }
     else{
       res.json(bearData);
