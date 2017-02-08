@@ -10,7 +10,7 @@ router.use(function(req, res, next) {
   next();
 })
 
-router.route('/bears')
+router.route('/bear')
   .get(function(req, res){
     Bear.find(function(err, data) {
       if(err){
