@@ -12,8 +12,8 @@ function BearsTable (props) {
                <td>{item.weight}</td>
                <td>{item.location}</td>
                <td>{item.attitude}</td>
-               <Button bsStyle="danger">Delete</Button>
-               <Button bsStyle="primary">Update</Button>
+               <Button bsStyle="danger" onClick={(id)=> props.deleteHandler(item._id)}>Delete</Button>
+               <Button bsStyle="primary" onClick={(id)=> props.updateHandler(item._id)}>Update</Button>
             </tr>
           );
   });
@@ -29,8 +29,6 @@ function BearsTable (props) {
             <th><strong>Weight</strong></th>
             <th><strong>Location</strong></th>
             <th><strong>Attitude</strong></th>
-            <th><strong>Delete</strong></th>
-            <th><strong>Update</strong></th>
           </tr>
           </thead>
           <tbody>
