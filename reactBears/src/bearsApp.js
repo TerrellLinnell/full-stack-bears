@@ -1,40 +1,44 @@
+//BearsApp (decides which component to render)
+//-viewAllBearsData (gets bears from server and passes them down)
+//-bearsList (renders bears into  list items)
+//-postBear data(holds state for bears form, submits bears to server)
+//bearPostForm (just a simple form)
+//editBearData (gets the bear from server, holds form state, posts bear to server)
+//bearEdutForm (just a simple form)
+
 import React from 'react';
 import './bearsApp.css';
-import BearsTable from './bearsTable';
-import BearsPostForm from './bearsPostForm';
+import Home from './Home';
+import ViewAllBears from './ViewAllBears';
+import PostBearsData from './PostBearsData';
+
+
 
 var BearsApp = React.createClass({
   getInitialState: function () {
-    var bears =[{name:"Yogi", species: "Black", age: 20, weight: 400, location: 'bozeman', attitude: 'average'}];
-    return{bears: bears, showUpdate: false};
+    return{activeComponent: 'Home'};
   },
-  getBears: function () {
-    //Ajax GET to API to get list of bears.
-  },
-  addABear: function () {
-    //Ajax POST to add a Bear
-  },
-  updateBear: function () {
-    //PUT to API to update a bear.
-  },
-  deleteABear: function () {
-    //Delete to API to delete a bear.
-  },
-  deleteHandler: function (){
-    console.log("Clicked the Delete button");
-  },
-  updateHandler: function (){
-    console.log("Clicked the Update button");
-  },
-
+updateActiveComponent: function (whichIsActive) {
+  this.setState({activeComponent: whichIsActive});
+},
+renderProperComponent: function () {
+  if (this.state.activeComponent === "Home") {
+    return (<Home updateActiveComponent={this.updateActiveComponent}/>);
+  } else if (this.state.activeComponent === "viewAll") {
+    return (<ViewAllBears />);
+  } else if (this.state.activeComponent === "postNew") {
+    return (<PostBearsData />);
+  }
+  else {
+    return null;
+  }
+},
   render: function () {
     return (
       <div>
-        <BearsTable  bears={this.state.bears} deleteHandler={this.deleteHandler} updateHandler={this.updateHandler}/>
-        <BearsPostForm />
-        </div>
+        {this.renderProperComponent() }
+      </div>
     );
-  }
+  },
 });
-
 export default BearsApp;
