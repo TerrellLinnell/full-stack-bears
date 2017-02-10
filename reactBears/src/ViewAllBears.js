@@ -1,6 +1,7 @@
 import React from 'react';
 import BearsTable from './BearsTable';
 import $ from 'jquery';
+import {Button} from 'react-bootstrap';
 var ViewAllBears = React.createClass({
   getInitialState: function () {
     return(
@@ -26,21 +27,24 @@ var ViewAllBears = React.createClass({
       url: '/api/bears/'+id,
       method: 'DELETE',
     }).done(function () {
-      console.log('Deleted bear with id: '+id);
+      console.log('Deleted bear with id: ' + id);
     })
     var newData = this.state.bears.filter(function (item) {
       return item._id !== id;
     })
     this.setState({bears: newData});
   },
-  updateABear: function () {
-
+  updateABear: function (id) {
+    this.props.updateBear(id);
+    this.props.updateActiveComponent('updateBear');
+    console.log("updating bear with id: " + id);
   },
   render: function () {
     return(
       <div>
         <h1>List of the Bears</h1>
         {this.state.bears ? <BearsTable bears={this.state.bears} deleteHandler={this.deleteABear} updateHandler={this.updateABear}/> : null}
+        <Button bsStyle="primary" onClick={() => this.props.updateActiveComponent("Home")} > Home </Button>
       </div>
     );
   }

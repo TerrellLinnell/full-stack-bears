@@ -11,23 +11,33 @@ import './bearsApp.css';
 import Home from './Home';
 import ViewAllBears from './ViewAllBears';
 import PostBearsData from './PostBearsData';
-
+import UpdateBearData from './UpdateBearData';
 
 
 var BearsApp = React.createClass({
   getInitialState: function () {
-    return{activeComponent: 'Home'};
+    return{activeComponent: 'Home',
+           updatingBear: null};
   },
 updateActiveComponent: function (whichIsActive) {
   this.setState({activeComponent: whichIsActive});
+},
+updateBear: function (bearId) {
+  var data = this.state;
+  data.updatingBear = bearId;
+  this.setState(data);
 },
 renderProperComponent: function () {
   if (this.state.activeComponent === "Home") {
     return (<Home updateActiveComponent={this.updateActiveComponent}/>);
   } else if (this.state.activeComponent === "viewAll") {
-    return (<ViewAllBears />);
+    return (<ViewAllBears updateActiveComponent={this.updateActiveComponent}
+              updateBear={this.updateBear} />);
   } else if (this.state.activeComponent === "postNew") {
-    return (<PostBearsData />);
+    return (<PostBearsData updateActiveComponent={this.updateActiveComponent} />);
+  } else if (this.state.activeComponent === ('updateBear')) {
+    return (<UpdateBearData bearId={this.state.updatingBear}
+              updateActiveComponent={this.updateActiveComponent} />);
   }
   else {
     return null;

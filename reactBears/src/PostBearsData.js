@@ -52,13 +52,14 @@ var PostBearsData = React.createClass({
 
   postNewBear: function () {
     console.log("Adding a Bear");
-    
+    var that = this;
     $.ajax({
       url: '/api/bears/',
       method: 'POST',
       data: this.state
     }).done(function (data) {
       console.log('Added a Bear', data);
+      that.props.updateActiveComponent('viewAll');
     });
   },
   render: function () {
@@ -73,7 +74,7 @@ var PostBearsData = React.createClass({
                       updateBearAttitude={this.updateBearAttitude}
                       onSubmit={this.postNewBear} />
       </div>
-    )
+    );
   }
 })
 
